@@ -30,24 +30,65 @@ function playRound(playerSelection,computerSelection){
     if(computerSelection === 1) computerString = "paper";
     if(computerSelection === 2) computerString = "scissors";
 
-    let resultString;
+    let result
 
     if(playerSelection - computerSelection === 1 || playerSelection - computerSelection === -2)
-        resultString = "computer chose "+ computerString +", you win!";
+        result = 1;
     else if(playerSelection - computerSelection === 0)
-        resultString = "computer chose " + computerString + ", it's a tie.";
+        result = 0;
     else
-        resultString = "computer chose " + computerString + ", you lose :(";
+        result = -1;
 
-    return resultString;
+    return result;
+}
+
+function convertToString(index){
+    switch(index){
+        case 0:
+            index = "rock";
+            break;
+        case 1:
+            index = "paper";
+            break;
+        case 2:
+            index = "scissors";
+            break;
+        default:
+            index = null;
+    }
+
+    return index;
 }
 
 function game(){
+    let computerScore = 0, playerScore = 0;
+
     for (let index = 0; index < 5; index++) {
         const playerSelection = prompt("choose rock, paper or scissors!");
         const computerSelection = computerPlay();
-        alert(playRound(playerSelection, computerSelection));
+        const computerSelectionString = convertToString(computerSelection);
+        
+        let result = playRound(playerSelection, computerSelection);
+
+        if(result === 1) {
+            alert("computer chose " + computerSelectionString + " ,you win!");
+            playerScore++;
+        }
+        else if(result === -1) {
+            alert("computer chose " + computerSelectionString + " ,you lose :(");
+            computerScore++;
+        }else
+            alert("computer chose " + computerSelectionString + " ,it's a tie.");
+
     }
+
+    alert("player score: " + playerScore + "computer score: " + computerScore);
+
+    if(playerScore > computerScore)
+        alert("you win!");
+    else
+        alert("you lose :(");
+    
 }
 
 
