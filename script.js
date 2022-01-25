@@ -53,44 +53,67 @@ function convertToInt(choice){
 
     return choice;
 }
+let computerScore = 0, playerScore = 0;
 
-function game(){
-    let computerScore = 0, playerScore = 0;
+function game(selection){
+    
+    
+    
 
-    for (let index = 0; index < 5; index++) {
-        const playerSelection = prompt("choose rock, paper or scissors!");
-        const computerSelection = computerPlay();
-        const playerSelectionInt = convertToInt(playerSelection);
-        const computerSelectionString = convertToString(computerSelection);
-        
-        let result = playRound(playerSelectionInt, computerSelection);
+    
 
-        if(result === 1) {
-            alert("computer chose " + computerSelectionString + " ,you win!");
-            playerScore++;
-        }
-        else if(result === -1) {
-            alert("computer chose " + computerSelectionString + " ,you lose :(");
-            computerScore++;
-        }else
-            alert("computer chose " + computerSelectionString + " ,it's a tie.");
 
+    const playerSelection = selection;
+    const computerSelection = computerPlay();
+    const playerSelectionInt = convertToInt(playerSelection);
+    const computerSelectionString = convertToString(computerSelection);
+    
+    let result = playRound(playerSelectionInt, computerSelection);
+
+    if(result === 1) {
+        alert("computer chose " + computerSelectionString + " ,you win!");
+        playerScore++;
+        playerNode.textContent = `player score: ${playerScore}`;
     }
+    else if(result === -1) {
+        alert("computer chose " + computerSelectionString + " ,you lose :(");
+        computerScore++;
+        computerNode.textContent = `computer score: ${computerScore}`;
+    }else
+        alert("computer chose " + computerSelectionString + " ,it's a tie.");
 
-    alert("player score: " + playerScore + " computer score: " + computerScore);
+    // alert("player score: " + playerScore + " computer score: " + computerScore);
 
-    if(playerScore > computerScore)
-        alert("you win!");
-    else if(playerScore < computerScore)
-        alert("you lose :(");
-    else
-        alert("it's a tie :/.")
+    // if(playerScore > computerScore)
+    //     alert("you win!");
+    // else if(playerScore < computerScore)
+    //     alert("you lose :(");
+    // else
+    //     alert("it's a tie :/.")
     
 }
 
+//const buttons = Array.from(document.querySelectorAll('.button'));
 
-game();
+let resultNode = document.getElementById('results');
+let playerNode = document.createElement('p');
+let computerNode = document.createElement('p');
 
+playerNode.textContent = `player score: ${playerScore}`;
+computerNode.textContent = `computer score: ${computerScore}`;
 
+resultNode.appendChild(playerNode);
+resultNode.appendChild(computerNode);
+
+const buttons = Array.from(document.querySelectorAll('.button'));
+buttons.forEach(button => button.addEventListener('click', () => {
+    
+    game(button.id);
+}));
+
+// const rock = document.querySelector('#rock');
+// rock.addEventListener("click", () => {
+//     console.log(rock.id)
+// });
 
 
