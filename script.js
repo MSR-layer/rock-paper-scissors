@@ -56,12 +56,7 @@ function convertToInt(choice){
 let computerScore = 0, playerScore = 0;
 
 function game(selection){
-    
-    
-    
-
-    
-
+    if(playerScore === 5 || computerScore === 5) return;
 
     const playerSelection = selection;
     const computerSelection = computerPlay();
@@ -73,47 +68,36 @@ function game(selection){
     if(result === 1) {
         alert("computer chose " + computerSelectionString + " ,you win!");
         playerScore++;
-        playerNode.textContent = `player score: ${playerScore}`;
+        playerNode.textContent = `${playerScore}`;
     }
     else if(result === -1) {
         alert("computer chose " + computerSelectionString + " ,you lose :(");
         computerScore++;
-        computerNode.textContent = `computer score: ${computerScore}`;
+        computerNode.textContent = `${computerScore}`;
     }else
         alert("computer chose " + computerSelectionString + " ,it's a tie.");
-
-    // alert("player score: " + playerScore + " computer score: " + computerScore);
-
-    // if(playerScore > computerScore)
-    //     alert("you win!");
-    // else if(playerScore < computerScore)
-    //     alert("you lose :(");
-    // else
-    //     alert("it's a tie :/.")
     
 }
 
-//const buttons = Array.from(document.querySelectorAll('.button'));
+let playerDiv = document.getElementById('playerScore');
+let compDiv = document.getElementById('computerScore');
 
-let resultNode = document.getElementById('results');
-let playerNode = document.createElement('p');
-let computerNode = document.createElement('p');
+let playerNode = document.createElement('div');
+let computerNode = document.createElement('div');
 
-playerNode.textContent = `player score: ${playerScore}`;
-computerNode.textContent = `computer score: ${computerScore}`;
+playerNode.textContent = `${playerScore}`;
+computerNode.textContent = `${computerScore}`;
 
-resultNode.appendChild(playerNode);
-resultNode.appendChild(computerNode);
+playerDiv.appendChild(playerNode);
+compDiv.appendChild(computerNode);
 
 const buttons = Array.from(document.querySelectorAll('.button'));
 buttons.forEach(button => button.addEventListener('click', () => {
     
     game(button.id);
+
+    
 }));
 
-// const rock = document.querySelector('#rock');
-// rock.addEventListener("click", () => {
-//     console.log(rock.id)
-// });
 
 

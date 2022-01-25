@@ -1,0 +1,52 @@
+
+html,body{
+    height: 100%;
+}
+
+body{
+    background-image: linear-gradient(#000000,#1A1A40);
+    display: flex;
+    flex-direction: column;
+}
+
+div{
+    color: #7A0BC0;
+}
+
+button{
+    background-color: #270082;
+    border-style: none;
+    color: #FA58B6;
+    height: 200px;
+    width: 200px;
+    border-radius: 20px;
+}
+
+.one{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.buttons{
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    align-content: center;
+    margin: 75px;
+}
+
+.button:hover{
+    transform: scale(1.1);
+    transition:all 0.5s ease;
+    transition-property: 0.5s;
+}
+
+#results{
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    gap: 20px;
+}

@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
-    <div>
-        make a selection
-        <button class="button" id="rock">rock</button>
-        <button class="button" id="paper">paper</button>
-        <button class="button" id="scissors">scissors</button>
+    <div class="one">
+        <div>Make a Selection:</div> 
+        <div class="buttons">
+            <button class="button" id="rock">rock</button>
+            <button class="button" id="paper">paper</button>
+            <button class="button" id="scissors">scissors</button>
+        </div>
     </div>
-    <div id="results"></div>
-    
-    
+    <div id="results">
+        <div id="playerScore">player score: </div>
+        <div id="computerScore">computer score: </div>
+    </div>
 </body>
 <script src="script.js"></script>
 </html>
