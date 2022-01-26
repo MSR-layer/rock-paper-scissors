@@ -20,6 +20,8 @@ button{
     height: 200px;
     width: 200px;
     border-radius: 20px;
+    transition:transform 0.5s ease;
+    box-shadow: 10px 10px 10px black;
 }
 
 .one{
@@ -33,15 +35,14 @@ button{
 .buttons{
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 25px;
     align-content: center;
     margin: 75px;
 }
 
-.button:hover{
+button:hover{
     transform: scale(1.1);
     transition:all 0.5s ease;
-    transition-property: 0.5s;
 }
 
 #results{
@@ -49,4 +50,12 @@ button{
     justify-content: center;
     align-items:center;
     gap: 20px;
+}
+
+#results div {
+    display:flex;
+    justify-content: center;
+    align-content: center;
+    padding-left: 10px;
+    padding-right: 10px;
 }
