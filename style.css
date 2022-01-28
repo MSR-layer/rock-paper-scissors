@@ -1,12 +1,15 @@
 
 html,body{
     height: 100%;
+    font-family: 'Dongle', sans-serif;
+    font-size: 2em;
 }
 
 body{
     background-image: linear-gradient(#000000,#1A1A40);
     display: flex;
     flex-direction: column;
+    
 }
 
 div{
@@ -40,6 +43,12 @@ button{
     margin: 75px;
 }
 
+.button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 button:hover{
     transform: scale(1.1);
     transition:all 0.5s ease;
@@ -58,4 +67,25 @@ button:hover{
     align-content: center;
     padding-left: 10px;
     padding-right: 10px;
+}
+
+#rock div {
+    height: 100px;
+    width: 100px;
+    background-color: #3bd6eb;
+    border-radius: 50%;
+}
+
+#paper div {
+    height: 100px;
+    width: 100px;
+    background-color: #3bd6eb;
+    border-radius: 10px;
+}
+
+#scissors div{
+    font-size: 120px;
+    background-color: transparent;
+    color: #3bd6eb;
+    -webkit-text-stroke: 20px #3bd6eb;
 }
