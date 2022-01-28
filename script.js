@@ -35,6 +35,7 @@ function convertToString(index){
 }
 
 function convertToInt(choice){
+
     choice.toLowerCase();
 
     switch(choice){
@@ -52,6 +53,7 @@ function convertToInt(choice){
     }
 
     return choice;
+
 }
 
 function reloadGame(){
@@ -67,12 +69,6 @@ function reloadGame(){
     console.log('game reload');
 }
 
-function gameExit(){
-    const optionsDiv = document.getElementById('promptDiv');
-    optionsDiv.parentNode.removeChild(optionsDiv);
-    buttons.forEach(button => button.removeEventListener('click',onClick));
-    
-}
 
 function playagain(){
     const mainDiv = document.getElementById('results');
@@ -111,7 +107,7 @@ function playagain(){
     }));
 
 }
-
+let stopGame = 0;
 let computerScore = 0, playerScore = 0;
 
 function game(selection){
@@ -151,38 +147,23 @@ compDiv.appendChild(computerNode);
 
 const buttons = Array.from(document.querySelectorAll('.button'));
 
-
-function onClick(button){
-    if(computerScore>=2||playerScore>=2) 
-    {
-        playagain();
-    }
-
-    game(button.id);
+function gameExit(){
+    const optionsDiv = document.getElementById('promptDiv');
+    optionsDiv.parentNode.removeChild(optionsDiv);
+    stopGame = 1;
 }
 
-buttons.forEach(button => button.addEventListener('click', onClick(this)));
-// buttons.forEach(button => button.addEventListener('click', function onClick(){
+buttons.forEach(button => button.addEventListener('click', function onClick() {
 
-//     if(computerScore>=2||playerScore>=2) 
-//     {
-//     //     let choice = playagain();
-//     //     if( choice === 'no') {
-//     //         return;
-//     //     }
-//     //     else if(choice === 'yes'){
-//     //         computerScore = 0;
-//     //         playerScore = 0;
-//     //     }
-
-//     //    const promptDiv = document.getElementById('promptDiv');
-//     //    promptDiv.parentNode.removeChild(promptDiv);
-//             playagain();
-//     }
     
-//     game(button.id);
+    
+    if(stopGame !== 1){
+        if(computerScore>=2||playerScore>=2) 
+                playagain();
+        game(button.id);
+    }
 
-// }));
+}));
 
 
 
