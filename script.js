@@ -79,6 +79,8 @@ function playagain(){
     const prompt = document.createElement('div');
     prompt.textContent = 'play Again?';
 
+    prompt.classList.add('text');
+
     yes.textContent = 'yes';
     no.textContent = 'no';
 
@@ -86,18 +88,29 @@ function playagain(){
     no.classList.add('option');
 
     yes.setAttribute('id','yes');
-    no.setAttribute('id','no');
+    yes.classList.add('yesNoButtons');
+    yes.classList.add('text');
 
-    promptDiv.append(prompt, yes, no);
+    no.setAttribute('id','no');
+    no.classList.add('yesNoButtons');
+    no.classList.add('text');
+
+    const yesNoDiv = document.createElement('div');
+    yesNoDiv.setAttribute('id','yesNoDiv');
+
+    yesNoDiv.append(yes, no);
+
+    promptDiv.append(prompt, yesNoDiv);
 
     mainDiv.appendChild(promptDiv);
 
-    let choice;
     const options = Array.from(document.querySelectorAll('.option'));
     options.forEach(button => button.addEventListener('click', () =>{
 
         if(button.id === 'yes'){
             reloadGame();
+            playagainCall = 0;
+            document.querySelector('.alert').textContent = '';
         }else if(button.id === 'no')
         {
             gameExit();
@@ -119,17 +132,27 @@ function game(selection){
     
     const result = playRound(playerSelectionInt, computerSelection);
 
+    const results = document.getElementById('results');
+
+    let alertString = '';
+
     if(result === 1) {
-        alert("computer chose " + computerSelectionString + " ,you win!");
+        alertString = "computer chose " + computerSelectionString + " ,you win!"
+        //alert("computer chose " + computerSelectionString + " ,you win!");
         playerScore++;
         playerNode.textContent = `${playerScore}`;
     }
     else if(result === -1) {
-        alert("computer chose " + computerSelectionString + " ,you lose :(");
+        alertString = "computer chose " + computerSelectionString + " ,you lose :("
+        //alert("computer chose " + computerSelectionString + " ,you lose :(");
         computerScore++;
         computerNode.textContent = `${computerScore}`;
     }else
-        alert("computer chose " + computerSelectionString + " ,it's a tie.");
+        alertString = "computer chose " + computerSelectionString + " ,it's a tie."
+    
+    //results.appendChild(alert);
+
+    return alertString;
     
 }
 
@@ -153,14 +176,23 @@ function gameExit(){
     stopGame = 1;
 }
 
+let alert = document.createElement('div');
+alert.classList.add('text','alert');
+
+const one = document.querySelector('.one');
+one.appendChild(alert);
+
+let playagainCall = 0
 buttons.forEach(button => button.addEventListener('click', function onClick() {
 
-    
-    
-    if(stopGame !== 1){
-        if(computerScore>=2||playerScore>=2) 
-                playagain();
-        game(button.id);
+    if(stopGame !== 1 && playagainCall !== 1){
+        
+        alert.textContent = game(button.id);
+
+        if(computerScore>=2||playerScore>=2){ 
+            playagainCall = 1;    
+            playagain();
+        }
     }
 
 }));
