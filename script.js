@@ -189,7 +189,7 @@ buttons.forEach(button => button.addEventListener('click', function onClick() {
         
         alert.textContent = game(button.id);
 
-        if(computerScore>=2||playerScore>=2){ 
+        if(computerScore>=5 || playerScore>=5){ 
             playagainCall = 1;    
             playagain();
         }
